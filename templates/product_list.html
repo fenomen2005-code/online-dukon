@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="text-2xl font-bold mb-6">Products</h2>
+
+{% if products %}
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+    {% for p in products %}
+    <div class="bg-white p-5 rounded-xl shadow hover:shadow-lg transition">
+
+        <h3 class="text-lg font-bold">{{ p.name }}</h3>
+
+        <p class="text-gray-600">{{ p.category }}</p>
+
+        <p class="text-green-600 font-semibold mt-2">{{ p.price }}-$</p>
+
+        {% if p.is_available %}
+            <span class="text-green-500 text-sm">Available</span>
+        {% else %}
+            <span class="text-red-500 text-sm">Not Available</span>
+        {% endif %}
+
+        <a href="/products/{{p.id}}/"
+           class="block mt-4 text-blue-500 hover:underline">
+           View Details
+        </a>
+
+    </div>
+    {% endfor %}
+
+</div>
+
+{% else %}
+    <p class="text-gray-500">Mahsulotlar topilmadi</p>
+{% endif %}
+
+{% endblock %}
